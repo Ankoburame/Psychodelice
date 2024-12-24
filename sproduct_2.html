@@ -13,24 +13,53 @@
 <body>
 
     <section id="header">
-        <a href="#"><img src="img/Logo/logo files-01.png" class="logo" width="75" height="75" alt=""></a>
-
-        <div>
-            <ul id="navbar">
-                <li><a href="index.html">Accueil</a></li>
-                <li><a class="active" href="shop.html">Produits</a></li>
+        <a href="#">
+            <img src="img/Logo/logo files-01.png" class="logo" width="75" height="75" alt="">
+        </a>
+    
+        <nav>
+            <ul class="nav-links" id="navbar">
+                <li><a class="active" href="index.html">Accueil</a></li>
+                <li><a href="shop.html">Produits</a></li>
                 <li><a href="news.html">Blog</a></li>
-                <li><a href="about.html">A propos</a></li>
+                <li><a href="about.html">À propos</a></li>
                 <li><a href="professional.html">Professionnel</a></li>
                 <li><a href="contact.html">Contact</a></li>
-                <li><a href="cart.html"><i class="fa-solid fa-basket-shopping fa-fade"></i></a></li>
+                <li><button id="cart-toggle" class="open-cart">Mon Panier</button></li>
             </ul>
+        </nav>
+    
+        <!-- Sidebar du panier -->
+        <div class="cart-sidebar" id="cart-sidebar">
+            <h2 class="cart-title">Mon Panier</h2>
+            <!-- Contenu -->
+            <div class="cart-content">
+                <div class="cart-box">
+                    <img src="img/Product/[CRAFTED_MOCKUPS]__Spray-Bottle-Mockup-vol_10ml-A-v1.2.png" alt="" class="cart-img">
+                    <div class="details-box">
+                        <div class="cart-product-title">Muscimol 150mg Menthe</div>
+                        <div class="cart-price">29€</div>
+                        <input type="number" value="1" class="cart-quantity">
+                    </div>
+                    <!-- Supprimer du panier -->
+                    <i class="fa-solid fa-trash cart-remove"></i>
+                </div>
+            </div>
+            <!-- Total -->
+            <div class="total">
+                <div class="total-title">Total</div>
+                <div class="total-price">0€</div>
+            </div>
+            <!-- Bouton Acheter -->
+            <button type="button" class="btn-buy" onclick="window.location.href='cart.html';">Acheter</button>
+            <!-- Icône pour fermer -->
+            <i class="fa-solid fa-xmark" id="close-cart"></i>
         </div>
     </section>
 
     <section id="prodetails" class="section-p1">
         <div class="single-pro-image">
-            <img src="img/Product/[CRAFTED_MOCKUPS]__Spray-Bottle-Mockup-vol_10ml-A-v1.2.png" width="100%" id="MainImg" alt="Main Product Image">
+            <img src="img/product.jpg" width="100%" id="MainImg" alt="Main Product Image">
             <div class="small-img-group">
                 <div class="small-img-col">
                     <img src="img/Mushroom1.PNG" width="100%" class="small-img" alt="Image alternative 1">
@@ -42,21 +71,21 @@
                     <img src="img/Mushroom3.png" width="100%" class="small-img" alt="Image alternative 3">
                 </div>
                 <div class="small-img-col">
-                    <img src="img/Product/[CRAFTED_MOCKUPS]__Spray-Bottle-Mockup-vol_10ml-A-v1.2.png" width="100%" class="small-img" alt="Image alternative 4">
+                    <img src="img/product.jpg" width="100%" class="small-img" alt="Image alternative 4">
                 </div>
             </div>
         </div>
         <div class="single-pro-details">
-            <h6>Accueil / Spray</h6>
-            <h4>Spray muscimol 150mg menthe</h4>
-            <h2>29 €</h2>
+            <h6>Home / Spray</h6>
+            <h4>Spray 2</h4>
+            <h2>10 €</h2>
 <!--            <select>
                 <option>Select Size</option>
                 <option>10ml</option>
                 <option>150ml</option>
             </select> -->
             <input type="number" value="1" min="1" aria-label="Quantity">
-            <button class="normal">Ajouter au panier</button>
+            <button class="normal">Add to Cart</button>
             <h4>Description</h4>
             <span>Here is the description of the product.</span>
         </div>
