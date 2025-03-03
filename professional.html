@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>psychodelice</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
+</head>
+
+<body>
+
+    <section id="header">
+        <a href="#">
+            <img src="img/Logo/logo files-01.png" class="logo" width="75" height="75" alt="">
+        </a>
+    
+        <nav>
+            <ul class="nav-links" id="navbar">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="shop.html">Produits</a></li>
+                <li><a href="news.html">Blog</a></li>
+                <li><a href="about.html">À propos</a></li>
+                <li><a class="active" href="professional.html">Professionnel</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><button id="cart-toggle" class="open-cart">Mon Panier</button></li>
+            </ul>
+        </nav>
+    
+        <!-- Sidebar du panier -->
+        <div class="cart-sidebar" id="cart-sidebar">
+            <h2 class="cart-title">Mon Panier</h2>
+            <!-- Contenu -->
+            <div class="cart-content">
+                <div class="cart-box">
+                </div>
+            </div>
+            <!-- Total -->
+            <div class="total">
+                <div class="total-title">Total</div>
+                <div class="total-price">0€</div>
+            </div>
+            <!-- Bouton Acheter -->
+            <button type="button" class="btn-buy" onclick="window.location.href='cart.html';">Acheter</button>
+            <!-- Icône pour fermer -->
+            <i class="fa-solid fa-xmark" id="close-cart"></i>
+        </div>
+    </section>
+
+
+    <footer class="section-p1">
+        <div class="col">
+            <h4>Contact</h4>
+            <p><strong>Adresse :</strong> adresse</p>
+            <p><strong>Horaires :</strong> 10:00 à 19:00, Mardi au Samedi</p>
+            <p><strong>Téléphone :</strong> +33 (0) x xx xx xx xx</p>
+            <div class="follow">
+                <h4>Nous suivre</h4>
+                <div class="icon">
+                    <a href="https://facebook.com" target="_blank" aria-label="Facebook">
+                        <i class="fa-brands fa-facebook"></i>
+                    </a>
+                    <a href="https://instagram.com" target="_blank" aria-label="Instagram">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="https://twitter.com" target="_blank" aria-label="Twitter">
+                        <i class="fa-brands fa-x-twitter"></i>
+                    </a>
+                    <a href="https://tiktok.com" target="_blank" aria-label="TikTok">
+                        <i class="fa-brands fa-tiktok"></i>
+                    </a>
+                    <a href="https://youtube.com" target="_blank" aria-label="Youtube">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <h4>A propos</h4>
+            <a href="#">Qui somme nous?</a>
+            <a href="#">Condition générales de ventes</a>
+            <a href="#">Frais de port</a>
+            <a href="#">Contactez-nous</a>
+        </div>
+        <div class="col">
+            <h4>Mon Compte</h4>
+            <a href="#" onclick="window.location.href='login.html';">Connexion</a>
+            <a href="#" onclick="window.location.href='cart.html';">Mon pannier</a>
+            <a href="#">Suivre ma commande</a>
+            <a href="#">Aide</a>
+        </div>
+        <div class="col pay">
+            <h4>Paiement</h4>
+            <p>Méthode de paiement accepté</p>
+            <img src="img/Payment/Logo_CB-1-768x377.png" alt="" class="payment" width="100" height="50">
+        </div>
+
+        <div class="copyright">
+            <p>© 2024, Ankoburame - Template HTML</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
