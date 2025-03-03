@@ -19,12 +19,12 @@
     
         <nav>
             <ul class="nav-links" id="navbar">
-                <li><a class="active" href="index.html">Accueil</a></li>
+                <li><a href="index.html">Accueil</a></li>
                 <li><a href="shop.html">Produits</a></li>
                 <li><a href="news.html">Blog</a></li>
                 <li><a href="about.html">À propos</a></li>
                 <li><a href="professional.html">Professionnel</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a class="active" href="contact.html">Contact</a></li>
                 <li><button id="cart-toggle" class="open-cart">Mon Panier</button></li>
             </ul>
         </nav>
@@ -35,14 +35,6 @@
             <!-- Contenu -->
             <div class="cart-content">
                 <div class="cart-box">
-                    <img src="img/Product/[CRAFTED_MOCKUPS]__Spray-Bottle-Mockup-vol_10ml-A-v1.2.png" alt="" class="cart-img">
-                    <div class="details-box">
-                        <div class="cart-product-title">Muscimol 150mg Menthe</div>
-                        <div class="cart-price">29€</div>
-                        <input type="number" value="1" class="cart-quantity">
-                    </div>
-                    <!-- Supprimer du panier -->
-                    <i class="fa-solid fa-trash cart-remove"></i>
                 </div>
             </div>
             <!-- Total -->
@@ -117,8 +109,8 @@
         </div>
         <div class="col">
             <h4>Mon Compte</h4>
-            <a href="#">Connexion</a>
-            <a href="#">Mon pannier</a>
+            <a href="#" onclick="window.location.href='login.html';">Connexion</a>
+            <a href="#" onclick="window.location.href='cart.html';">Mon pannier</a>
             <a href="#">Suivre ma commande</a>
             <a href="#">Aide</a>
         </div>
