@@ -749,7 +749,42 @@ footer .copyright{
     margin-right: 15px;
 }
 
-/* Start Media Query */
+/* Styles du conteneur */
+.form-container {
+    display: flex;
+    gap: 20px; /* Espacement entre les divs */
+    justify-content: center; /* Centrer les divs */
+    align-items: center; /* Alignement vertical */
+  }
+  
+  /* Styles des formulaires */
+  .form-box-login, .form-box-register {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  /* Styles des boutons dans les formulaires login et register */
+.form-box-login form button,
+.form-box-register form button {
+    height: 27px; /* Identique à l'input */
+    padding: 0 20px; /* Équilibrer le contenu dans le bouton */
+    font-size: 12px; /* Même taille que l'input */
+    background-color: #174f43;
+    color: #fff;
+    border: none;
+    border-radius: 4px; /* Coin arrondi pour uniformité */
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.form-box-login form button:hover,
+.form-box-register form button:hover {
+    background-color: #1e5c4f;
+}
 
 @media (max-width: 799px) {
     #navbar {
