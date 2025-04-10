@@ -17,7 +17,11 @@ if (closeCart) {
 }
 
 // Attendre que le DOM soit chargé
-document.addEventListener("DOMContentLoaded", ready);
+document.addEventListener("DOMContentLoaded", () => {
+    ready();
+    loadCart();
+    loadCartTable(); // affichage dans #cart
+});
 
 function ready() {
     document.querySelectorAll('.cart-remove').forEach(button => {
@@ -37,7 +41,7 @@ function ready() {
 function removeCartItem(event) {
     event.target.closest('.cart-box').remove();
     updateTotal();
-    saveCart()
+    saveCart();
 }
 
 // Modifier la quantité de produits
@@ -46,7 +50,7 @@ function quantityChanged(event) {
         event.target.value = 1;
     }
     updateTotal();
-    saveCart()
+    saveCart();
 }
 
 // Ajouter un produit au panier
@@ -57,14 +61,13 @@ function addCartClicked(event) {
     const productImg = document.getElementById("MainImg").src;
 
     addProductToCart(title, price, productImg);
-    updateTotal(); // Assurez-vous que le total est mis à jour après l'ajout
+    updateTotal();
 }
 
 function addProductToCart(title, price, productImg) {
     const cartItems = document.querySelector('.cart-content');
     const cartItemNames = cartItems.querySelectorAll('.cart-product-title');
 
-    // Vérifier si le produit est déjà dans le panier
     for (let itemName of cartItemNames) {
         if (itemName.innerText === title) {
             alert('Ce produit est déjà dans votre panier.');
@@ -72,7 +75,6 @@ function addProductToCart(title, price, productImg) {
         }
     }
 
-    // Créer un nouvel élément pour le panier
     const cartShopBox = document.createElement('div');
     cartShopBox.classList.add('cart-box');
     cartShopBox.innerHTML = `
@@ -86,12 +88,11 @@ function addProductToCart(title, price, productImg) {
 
     cartItems.append(cartShopBox);
 
-    // Ajouter les événements aux nouveaux éléments du panier
     cartShopBox.querySelector('.cart-remove').addEventListener('click', removeCartItem);
     cartShopBox.querySelector('.cart-quantity').addEventListener('change', quantityChanged);
 
-    updateTotal(); // Mise à jour du total après l'ajout
-    saveCart()
+    updateTotal();
+    saveCart();
 }
 
 // Mettre à jour le total
@@ -104,11 +105,8 @@ function updateTotal() {
         const priceElement = cartBox.querySelector('.cart-price');
         const quantityElement = cartBox.querySelector('.cart-quantity');
 
-        let priceText = priceElement.innerText.replace('€', '').trim();
-        let price = parseFloat(priceText.replace(',', '.')); // Corrige les prix avec virgules
+        let price = parseFloat(priceElement.innerText.replace('€', '').replace(',', '.'));
         let quantity = parseInt(quantityElement.value);
-
-        console.log("Prix récupéré:", price, "Quantité:", quantity); // Débogage
 
         if (!isNaN(price) && !isNaN(quantity)) {
             total += price * quantity;
@@ -116,10 +114,10 @@ function updateTotal() {
     });
 
     document.querySelector('.total-price').innerText = `${total.toFixed(2)}€`;
-    saveCart(); // Sauvegarde après mise à jour
+    saveCart();
 }
 
-
+// Sauvegarder le panier
 function saveCart() {
     const cartContent = document.querySelector('.cart-content');
     const cartBoxes = cartContent.querySelectorAll('.cart-box');
@@ -127,20 +125,27 @@ function saveCart() {
 
     cartBoxes.forEach(cartBox => {
         let title = cartBox.querySelector('.cart-product-title').innerText;
-        let price = cartBox.querySelector('.cart-price').innerText;
+        let price = cartBox.querySelector('.cart-price').innerText.replace('€', '').replace(',', '.');
         let imgSrc = cartBox.querySelector('.cart-img').src;
         let quantity = cartBox.querySelector('.cart-quantity').value;
 
-        cart.push({ title, price, imgSrc, quantity });
+        cart.push({
+            title,
+            price: parseFloat(price),
+            imgSrc,
+            quantity: parseInt(quantity)
+        });
     });
 
     localStorage.setItem('cart', JSON.stringify(cart));
 }
 
+// Charger les éléments du panier dans la sidebar
 function loadCart() {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const cartItems = document.querySelector('.cart-content');
-    cartItems.innerHTML = ""; // Vider le panier avant de recharger
+    if (!cartItems) return;
+    cartItems.innerHTML = "";
 
     cart.forEach(item => {
         const cartShopBox = document.createElement('div');
@@ -149,14 +154,13 @@ function loadCart() {
             <img src="${item.imgSrc}" alt="" class="cart-img">
             <div class="details-box">
                 <div class="cart-product-title">${item.title}</div>
-                <div class="cart-price">${item.price}</div>
+                <div class="cart-price">${item.price.toFixed(2)}€</div>
                 <input type="number" value="${item.quantity}" class="cart-quantity" min="1">
             </div>
             <i class="fa-solid fa-trash cart-remove"></i>`;
 
         cartItems.append(cartShopBox);
 
-        // Ajouter les événements
         cartShopBox.querySelector('.cart-remove').addEventListener('click', removeCartItem);
         cartShopBox.querySelector('.cart-quantity').addEventListener('change', quantityChanged);
     });
@@ -164,9 +168,30 @@ function loadCart() {
     updateTotal();
 }
 
-// Charger le panier au démarrage
-document.addEventListener("DOMContentLoaded", () => {
-    ready();
-    loadCart();
-});
+// Charger les éléments du panier dans la section #cart
+function loadCartTable() {
+    const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+    const cartTableBody = document.querySelector("#cart tbody");
+    if (!cartTableBody) return;
 
+    cartTableBody.innerHTML = "";
+    let totalPanier = 0;
+
+    cartItems.forEach(item => {
+        const row = document.createElement("tr");
+
+        const itemTotal = item.price * item.quantity;
+        totalPanier += itemTotal;
+
+        row.innerHTML = `
+            <td><i class="fa-regular fa-square-minus"></i></td>
+            <td><img src="${item.imgSrc}" width="50" height="50" alt="${item.title}"></td>
+            <td>${item.title}</td>
+            <td>${item.price.toFixed(2)}€</td>
+            <td>${item.quantity}</td>
+            <td>${itemTotal.toFixed(2)}€</td>
+        `;
+
+        cartTableBody.appendChild(row);
+    });
+}
